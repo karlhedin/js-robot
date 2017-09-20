@@ -27,6 +27,39 @@
     var directions = ['N', 'E', 'S', 'W'];
     return this.currentX + ' ' + this.currentY + ' ' + directions[this.currentDirectionIndex];
   };
+  // -1 = left
+  // 1 = right
+  Model.prototype.rotate = function (direction) {
+    // Wraps around the array indices
+    this.currentDirectionIndex = (this.currentDirectionIndex + direction + 4) % 4;
+  };
+  Model.prototype.getNewPoint = function () {
+    var newPoint;
+
+    switch (this.currentDirectionIndex) {
+      case 0: // N
+        newPoint = { x: this.currentX, y: this.currentY + 1 };
+        break;
+      case 1: // E
+        newPoint = { x: this.currentX + 1, y: this.currentY };
+        break;
+      case 2: // S
+        newPoint = { x: this.currentX, y: this.currentY - 1 };
+        break;
+      case 3: // W
+        newPoint = { x: this.currentX - 1, y: this.currentY };
+        break;
+    }
+
+    return newPoint;
+  };
+  Model.prototype.forward = function () {
+    var newPoint = Model.prototype.getNewPoint.call(this);
+    if (this.room.contains(newPoint.x, newPoint.y)) {
+      this.currentX = newPoint.x;
+      this.currentY = newPoint.y;
+    }
+  };
 
 
   // Export the model to window
