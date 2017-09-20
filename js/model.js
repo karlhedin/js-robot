@@ -38,13 +38,13 @@
 
     switch (this.currentDirectionIndex) {
       case 0: // N
-        newPoint = { x: this.currentX, y: this.currentY + 1 };
+        newPoint = { x: this.currentX, y: this.currentY - 1 };
         break;
       case 1: // E
         newPoint = { x: this.currentX + 1, y: this.currentY };
         break;
       case 2: // S
-        newPoint = { x: this.currentX, y: this.currentY - 1 };
+        newPoint = { x: this.currentX, y: this.currentY + 1 };
         break;
       case 3: // W
         newPoint = { x: this.currentX - 1, y: this.currentY };
