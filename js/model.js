@@ -60,6 +60,21 @@
       this.currentY = newPoint.y;
     }
   };
+  Model.prototype.performCommands = function (comandString) {
+    for (var i = 0, len = comandString.length; i < len; i++) {
+      var charU = comandString.charAt(i).toUpperCase();
+      if (charU === 'L' || charU === 'V') {
+        console.log('left');
+        Model.prototype.rotate.call(this, -1);
+      } else if (charU === 'R' || charU === 'H') {
+        console.log('right');
+        Model.prototype.rotate.call(this, 1);
+      } else if (charU === 'F' || charU === 'G') {
+        console.log('forward');
+        Model.prototype.forward.call(this);
+      }
+    }
+  };
 
 
   // Export the model to window
